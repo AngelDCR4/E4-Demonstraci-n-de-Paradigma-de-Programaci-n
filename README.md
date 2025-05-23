@@ -70,6 +70,22 @@ Con estas bases se pudo implementar un sistema capaz de manejar de manera concur
 
 # Pruebas
 El objetivo de las pruebas es poder visualizar la distribución individual de cada una de las solicitudes generadas en los controladores, ademas de ver cuantas solicitudes fueron aprobadas o rechazadas de acuerdo a la disponibilidad de días.
+``` python
+ for (int i = 0; i < usuarios.size(); i++) {
+            if(usuarios[i].diasDisponibles == 10) {
+                cout << "Empleado " << usuarios[i].id << " Solicitud no procesada" << endl;
+            } else {
+            cout << "Empleado " << usuarios[i].id << " → Dias restantes: " << usuarios[i].diasDisponibles << endl;
+            }
+        }
+
+...
+
+cout << "\n ---> Resultado General <---" << endl;
+        cout << "Solicitudes aprobadas: " << totalAprobadas << endl;
+        cout << "Solicitudes rechazadas: " << totalRechazadas << endl;
+        cout << "Solicitudes totales: " << totalAprobadas + totalRechazadas << endl;
+```
 
 Se diseño el siguiente escenario:
  - **20 empleados** con **10 días disponibles cada uno**
@@ -87,4 +103,27 @@ Se diseño el siguiente escenario:
 ## Complejidad temporal y espacial
 La complejidad temporal del sistema es **O(n)**, donde *n* es el número de solicitudes generadas. Esto se debe a que cada solicitud es procesada una sola vez por cada controlador, provocanto que el tiempo total de ejecución crece linealmente acorde al número de solicitudes. Sin embargo en el peor de los casos se considera que las solicitudes sean demasiadas y el número de controladores no sean suficientes, se estaría mandando a un cierto tiempo de espera y a repetir el proceso de busqueda, esto provoca que la complejidad sea de **O(N x C**. 
 
-La complejidad espacial es de **O(n)** donde *n* es el número de días disponibles, numero de controladores, numero de hilos. Es decir el sistema escala de manera lineal acorde a la cantidad de sus componentes principales
+La complejidad espacial es de **O(n)** donde *n* es el número de días disponibles, numero de controladores, numero de hilos. Es decir el sistema escala de manera lineal acorde a la cantidad de sus componentes principales.
+
+## Paradigma funcional
+Podemos resolver la misma problema haciendo uso del **paradigma funcional**, ya que solamente estamos considerando una evaluación de una lista conforme a ciertas condiciones. Todo esto lo podemos seccionar en funciones puras cada una encargada de una tarea especifica sin la necesidad de manejar estados cambiantes o ejecución de multiples tareas.
+
+Primero deberiamos de definir nuestros empleados y sus respectivas solicitudes junto con sus valores de prueba:
+```Racket
+(define empleados (list 10 10 10))
+(define solicitudes (list 5 12 10))
+```
+
+Luego tenemos que ver si cada solicitud es aprobada o rechazada en funcion de los días disponibles de cada empleado correspondiente. Hacemos uso de la funcion ```map``` y una función lambda:
+
+```Racket
+(map (lambda (e s) (>= e s)) empleados solicitudes)
+```
+Finalmente obtenemos una lista de los resultados de cada evaluación
+```Racket
+(#t #f #t) ; aprobado, rechazado, aprobado
+```
+
+Este enfoque es predecible y de facil mantenimiento, sus resultados dependen unicamente de las entradas establecidas.
+
+
