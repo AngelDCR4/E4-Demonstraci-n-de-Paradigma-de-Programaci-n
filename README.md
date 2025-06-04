@@ -141,18 +141,34 @@ Finalmente obtenemos una lista de los resultados de cada evaluación
 ```
 
 ### Complejidad temporal y espacial
-La complejidad del paradigma funcional en base al contexto de las solicitudes de vacaciones es de O(n) en ambos. En el temporal *n* representa el numero de empleados y solicitudes, es decir que su tiempo de ejecución será lineal respecto al numero de usuarios o solicitudes establecidas. Mientras que *n* en la complejidad espacial representa el resultado de ```map``` ya que devuelve una lista booleana el cual el espacio ira incrementando de manera lineal conforme a las listas ingresadas en la función. 
+La complejidad del paradigma funcional en base al contexto de las solicitudes de vacaciones es de O(n) en ambas complejidades. En la complejidad temporal *n* representa el numero de empleados y solicitudes, es decir que su tiempo de ejecución será lineal respecto al numero de usuarios o solicitudes establecidas. Mientras que *n* en la complejidad espacial representa el resultado de ```map``` ya que al estar trabajando con una lista la memoria ira incrementando de manera lineal conforme a las listas ingresadas en la función. 
 
-### Comparacion de paradigmas
-Ambos paradigmas **concurrente y funcional** tienen su forma de abarcar los problemas y cada uno tiene sus ventajas y desventajas bajo distintos contextos.
+## Paradigma Logico
+Otra posible solución para esta situación es el uso del paradigma logico, no serviria completamente para el procesamiento simultaneo de solicitudes pero si nos puede ayudar a dar una validación de solicitud por medio de inferencias o unificación. Podemos definir en una primera funcion a un empleado con sus días disponibles de vacaciones, y con una regla hacer la validadción de que la cantidad de días solicitados no supere a la cantidad de dias disponibles, sin la necesidad de modificar datos, solo por medio de deducciones. De esta manera llegariamos a una inferencia en la que se devuelve un valor true o false, dando a entender que la solicitud fue aprobada o rechazada .
+
+### Complejidad temporal y espacial
+Bajo este contexto la complejidad temporal es de **O(n)**, porque el tiempo de ejecución creceria de manera lineal de acuerdo al número de inferencias que el sistema debe de hacer o en otras palabras por el numero de solicitudes a aprobar. La complejidad espacial es de **O(n)**, ya que la cantidad de memoria solicitada crecería conforme a la cantidad de empleados generados y a la cantidad de inferencias que se esten realizando.
+
+## Comparacion de paradigmas
+Todos los paradigmas **(concurrente, funcional y logico)** tienen su forma de abarcar los problemas y cada uno tiene sus ventajas y desventajas bajo distintos contextos.
 
 **Paradigma Concurrente**
+
 Su principal ventaja es la ejecución de multiples tareas al mismo tiempo, utiliza los threads para el proceso y sincronización con diferentes recursos. Puede ayudar con el rendimiento de las tareas y en mi caso lo utlice para poder ejecutar multiples solicitudes generadas al mismo tiempo. Sin embargo esto le agrega complejidad a su programación y es propenso a errores de condiciones de carrera o bloqueos debido al uso compartido de recursos.
 
 **Paradigma Funcional**
-Es la base de las funciones puras, ya que solo se enfocan en una sola "operación", su código es más facil de razonar e implementar, es ideal para procesar datos, recursión y funciones con listas. Sin embargo puede llegar a ser menos eficiente al ser secuencial y ademas no puede funcionar en base a cambios de variables en tiempo real.
 
-Basicamente el **Paradigma funcional** se destaca por su funcionalidad pura y simplisidad, mientras que el **Paradigma concurrente** se destaca más por la ejecución de multiples tareas a la vez. Ambos son útiles y su efectividad depende más del contexto o problema a resolver en el que se desea utilizar.
+Forma parte de los paradigmas declarativos, su enfoque esta en las funciones puras, ya que se centraliza en procesar datos mediante la composicion de funciones puras evitando efectos secundarios para todo el funcioamiento, su código es más facil de razonar e implementar, es ideal para procesar datos, recursión y funciones con listas. Sin embargo puede llegar a ser menos eficiente al ser secuencial y ademas no puede funcionar en base a cambios de variables en tiempo real.
+
+**Paradigma Logico**
+
+Se busca una posible solucion por medio de inferencias. El programador define el resultado esperado, pero no las instrucciones para llegar a el, es decir, trata de conseguir datos nuevos a traves de los datos ya existentes mediante la aplicación de reglas logicas. Es posible que se encuentre una o varias soluciones gracias al backtracking
+
+Basicamente el **Paradigma funcional** se destaca por su funcionalidad pura y simplesidad; mientras que el **Paradigma concurrente** se destaca más por la ejecución de multiples tareas a la vez; Por otro lado el **Paradigma logico** se destaca por su capacidad de llegar a resultados sin ninguna instruccion, solo utiliza deducciones mediante reglas establecidas. Todos los paradigmas son útiles y su efectividad depende más del contexto o problema a resolver en el que se desea utilizar.
+
+## Benchmark
+![image](https://github.com/user-attachments/assets/9d7c5ed7-411c-4bb1-9cb0-7967cfa6700e)
+
 
 # Referencias
 
@@ -164,3 +180,4 @@ GeeksforGeeks. (2023, 20 noviembre). Mutex in C++. GeeksforGeeks. https://www.ge
 
 GeeksforGeeks. (2025, 21 febrero). Thread in Operating System. GeeksforGeeks. https://www.geeksforgeeks.org/thread-in-operating-system/
 
+Programación lógica UNAL. (s. f.). https://ferestrepoca.github.io/paradigmas-de-programacion/proglogica/logica_teoria/proglogica.html
